@@ -1,0 +1,18 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual.v,,ram,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual.v,1727303290,verilog,,,,ram_dual,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual_memsplit.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram.v,,ram_dual_memsplit,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/reset_sync/reset_sync.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual_memsplit.v,,reset_sync,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/uart_rx.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/udm_controller.v,,uart_rx,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/uart_tx.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/reset_sync/reset_sync.v,,uart_tx,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/udm.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/uart_rx.v,,udm,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/udm_controller.v,1727303290,verilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/uart_tx.v,,udm_controller,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.ip_user_files/ip/sys_clk/sys_clk_sim_netlist.v,1727303364,verilog,,,,sys_clk;sys_clk_sys_clk_clk_wiz,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.srcs/sources_1/new/matrix_math.sv,1727867030,systemVerilog,,,,matrix_math,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sv,1727770043,systemVerilog,,,,MemSplit32;NEXYS4_DDR,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/tb/tb.sv,1727769944,systemVerilog,,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sv,C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/tb/udm.svh,tb,,,,,,,,
+C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/tb/udm.svh,1727303290,verilog,,,,,,,,,,,,
