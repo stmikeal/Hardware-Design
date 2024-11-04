@@ -83,6 +83,7 @@ localparam TESTMEM_ADDR         = 32'h80000000;
 initial
     begin
     logic [31:0] wrdata [];
+    logic [31:0] res;
     integer ARRSIZE=10;
     
 	$display ("### SIMULATION STARTED ###");
@@ -114,10 +115,17 @@ initial
 	udm.wr32(32'h20000038, 32'h8);
 	udm.wr32(32'h2000003C, 32'hA);
 	
-    udm.rd32(32'h20000040);
-    udm.rd32(32'h20000044);
-    udm.rd32(32'h20000048);
-    udm.rd32(32'h2000004C);
+	udm.wr32(32'h20000050, 32'h1);
+	
+	udm.rd32(32'h20000054, res);
+	while(res == 0) begin 
+	   udm.rd32(32'h20000054, res);
+	end
+	
+    udm.rd32(32'h20000040, res);
+    udm.rd32(32'h20000044, res);
+    udm.rd32(32'h20000048, res);
+    udm.rd32(32'h2000004C, res);
 	
 	WAIT(100);
 	
@@ -125,7 +133,6 @@ initial
 	udm.wr32(32'h00000000, 32'h5a5a5a5a);
 	
 	// reading SW
-	udm.rd32(32'h00000004);
 	
 	WAIT(1000);
 

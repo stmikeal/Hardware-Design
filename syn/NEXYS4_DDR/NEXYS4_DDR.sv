@@ -39,9 +39,11 @@ localparam UDM_RTX_EXTERNAL_OVERRIDE = (SIM == "YES") ? "YES" : "NO";
 
 logic clk_gen;
 logic pll_locked;
-logic [31:0] mat1 [1:0][3:0];
-logic [31:0] mat2 [3:0][1:0];  
-logic [31:0] res [1:0][1:0];
+logic [1:0][3:0][31:0] mat1;
+logic [3:0][1:0][31:0] mat2;  
+logic [1:0][1:0][31:0] res;
+logic math_start;
+logic math_ready;
 wire [29:0]short_addr;
 assign short_addr = udm_bus.addr[31:2];
 
@@ -91,7 +93,7 @@ udm
 	, .bus_rdata_bi(udm_bus.rdata)
 );
 
-matrix_math matrix_math(mat1, mat2, res);
+matrix_math matrix_math(clk_gen, math_start, mat1, mat2, res, math_ready);
 
 localparam CSR_LED_ADDR         = 32'h00000000;
 localparam CSR_SW_ADDR          = 32'h00000004;
@@ -105,6 +107,8 @@ localparam CSR_MATH_SIZE        = 4 * 20;
 localparam CSR_MATH_MAT1_MAX    = CSR_MATH_ADDR + 4 * 8;
 localparam CSR_MATH_MAT2_MAX    = CSR_MATH_MAT1_MAX + 4 * 8;
 localparam CSR_MATH_RES_MAX     = CSR_MATH_MAT2_MAX + 4 * 4;
+localparam CSR_MATH_START       = CSR_MATH_RES_MAX + 4;
+localparam CSR_MATH_READY       = CSR_MATH_START + 4;
 
 
 logic udm_testmem_enb;
@@ -154,6 +158,7 @@ always @(posedge clk_gen)
     if (srst)
         begin
         LED <= 16'hffff;
+        math_start <= 0;
         end
     
     else
@@ -168,7 +173,7 @@ always @(posedge clk_gen)
                 begin
                     if (udm_bus.addr < CSR_MATH_MAT1_MAX) mat1[(short_addr & 32'h4) >> 2][short_addr & 32'h3] <= udm_bus.wdata;
                     else if (udm_bus.addr < CSR_MATH_MAT2_MAX) mat2[short_addr & 32'h3][(short_addr & 32'h4) >> 2] <= udm_bus.wdata;
-                    //else if (udm_bus.addr < CSR_MATH_RES_MAX) res[(short_addr & 32'h2) >> 1][short_addr & 32'h1] <= udm_bus.wdata;
+                    else if (udm_bus.addr >= CSR_MATH_RES_MAX && udm_bus.addr < CSR_MATH_START) math_start <= udm_bus.wdata;
                 end
                 if (udm_bus.addr == CSR_LED_ADDR) LED <= udm_bus.wdata;
                 end
@@ -181,6 +186,10 @@ always @(posedge clk_gen)
                     begin
                         udm_csr_resp <= 1'b1;
                         udm_csr_rdata <= res[(short_addr & 32'h2) >> 1][short_addr & 32'h1];
+                    end
+                    else if (udm_bus.addr >= CSR_MATH_START  && udm_bus.addr < CSR_MATH_READY) begin
+                        udm_csr_resp <= 1'b1;
+                        udm_csr_rdata <= math_ready;
                     end
                 end
                 if (udm_bus.addr == CSR_LED_ADDR)

@@ -24,48 +24,78 @@ module matrix_math #(
     WIDTH = 2,
     HEIGHT = 4
 )(
-    input  logic [31:0] mat1 [WIDTH - 1:0][HEIGHT - 1:0],
-    input  logic [31:0] mat2 [HEIGHT - 1:0][WIDTH - 1:0],  
-    output reg [31:0] res [WIDTH - 1:0][WIDTH - 1:0]
+    input clk, nrst,
+    input  logic [WIDTH - 1:0][HEIGHT - 1:0][31:0] mat1,
+    input  logic [HEIGHT - 1:0][WIDTH - 1:0][31:0] mat2,  
+    output reg [WIDTH - 1:0][WIDTH - 1:0][31:0] res,
+    output reg ready
     );
-//    genvar i,j,k;
-//    logic [31:0] pairs [WIDTH-1:0][WIDTH-1:0][HEIGHT-1:0];
-//    pair = askjdbas;
-//    generate
-//        for(i = 0; i < WIDTH; i++) 
-//            for(j = 0; j < WIDTH; j++) begin
-//                for(k = 0; k < HEIGHT; k++)
-//                    pairs[i][j][k] = mat1[i][k]*mat2[k][j];
-//                assign res[i][j] = pairs[i][j].sum();
-//            end
-//    endgenerate
-   
-    always_comb begin
-        for(int i = 0; i < WIDTH; i++) begin
-            for(int j = 0; j < WIDTH; j++) begin
-                res[i][j] = 0;
-                for(int k = 0; k < HEIGHT; k++) begin
-                    res[i][j] += mat1[i][k]*mat2[k][j];
+    
+    logic [HEIGHT - 1:0][WIDTH - 1:0][WIDTH - 1:0][31:0] elems;
+    
+    logic [31:0] iter_elem; 
+    logic [31:0] iter_row;
+    logic [31:0] iter_column;
+    
+    enum logic [1:0] {IDLE, ELEM, SUM, RESULT} state;
+    
+    always @(posedge clk, negedge nrst) begin
+        if (~nrst) begin
+            iter_elem <= 0;
+            iter_row <= 0;
+            iter_column <= 0;
+            state <= IDLE;
+            elems <= 0;
+            ready <= 0;
+            res <= 0;
+        end else begin
+            case(state)
+                IDLE: state <= ELEM;
+                ELEM: begin
+                    elems[iter_elem][iter_row][iter_column] = mat1[iter_row][iter_elem] * mat2[iter_elem][iter_column];
+                    if (iter_elem == HEIGHT - 1 && iter_row == WIDTH - 1 && iter_column == WIDTH - 1) begin
+                        state <= SUM; 
+                        iter_elem <= 0;
+                        iter_row <= 0;
+                        iter_column <= 0;
+                    end else begin
+                        if (iter_elem != HEIGHT - 1) begin
+                            iter_elem <= iter_elem + 1;
+                        end else begin
+                            iter_elem <= 0;
+                            if (iter_row != WIDTH - 1) begin
+                                iter_row <= iter_row + 1;
+                            end else begin
+                                iter_row <= 0;
+                                iter_column <= iter_column + 1;
+                            end
+                        end
+                    end
                 end
-            end
+                SUM: begin
+                    res[iter_row][iter_column] <= res[iter_row][iter_column] + elems[iter_elem][iter_row][iter_column];
+                    if (iter_elem == HEIGHT - 1 && iter_row == WIDTH - 1 && iter_column == WIDTH - 1) begin
+                        state <= RESULT;
+                        iter_elem <= 0;
+                        iter_row <= 0;
+                        iter_column <= 0;
+                    end else begin
+                        if (iter_elem != HEIGHT - 1) begin
+                            iter_elem <= iter_elem + 1;
+                        end else begin
+                            iter_elem <= 0;
+                            if (iter_row != WIDTH - 1) begin
+                                iter_row <= iter_row + 1;
+                            end else begin
+                                iter_row <= 0;
+                                iter_column <= iter_column + 1;
+                            end
+                        end
+                    end
+                end
+                RESULT: ready <= 1;
+            endcase
         end
     end
-    
-//always_comb begin
-//    res[0][0] = mat1[0][0]*mat2[0][0] + mat1[0][1]*mat2[1][0] + mat1[0][2]*mat2[2][0] + mat1[0][3]*mat2[3][0];
-//    res[0][1] = mat1[0][0]*mat2[0][1] + mat1[0][1]*mat2[1][1] + mat1[0][2]*mat2[2][1] + mat1[0][3]*mat2[3][1]; 
-//    res[1][0] = mat1[1][0]*mat2[0][0] + mat1[1][1]*mat2[1][0] + mat1[1][2]*mat2[2][0] + mat1[1][3]*mat2[3][0]; 
-//    res[1][1] = mat1[1][0]*mat2[0][1] + mat1[1][1]*mat2[1][1] + mat1[1][2]*mat2[2][1] + mat1[1][3]*mat2[3][1]; 
-//end
-    
-//    always @(*) begin
-//        for(int i = 0; i < WIDTH; i++)
-//            for(int j = 0; j < WIDTH; j++)begin
-//                $display("pairs: %p", pairs[i][j]);
-//                $display("real pairs: %d %d %d %d", pairs[i][j][0], pairs[i][j][1], pairs[i][j][2], pairs[i][j][3]);
-//                $display("sum: %d", pairs[i][j].sum with(item));
-//                $display("real sum: %d", pairs[i][j][0] + pairs[i][j][1] + pairs[i][j][2] + pairs[i][j][3]);
-//            end
-//    end
     
 endmodule

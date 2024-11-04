@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="31880000001fs"></ZoomEndTime>
-      <Cursor1Time time="16000000000fs"></Cursor1Time>
+      <ZoomStartTime time="17215000000fs"></ZoomStartTime>
+      <ZoomEndTime time="36930000001fs"></ZoomEndTime>
+      <Cursor1Time time="5088958000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="437"></NameColumnWidth>
-      <ValueColumnWidth column_width="268"></ValueColumnWidth>
+      <NameColumnWidth column_width="204"></NameColumnWidth>
+      <ValueColumnWidth column_width="256"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="6" />
+   <WVObjectSize size="7" />
    <wvobject fp_name="/tb/SW" type="array">
       <obj_property name="ElementShortName">SW[15:0]</obj_property>
       <obj_property name="ObjectShortName">SW[15:0]</obj_property>
@@ -78,5 +78,36 @@
    <wvobject fp_name="/tb/DUT/testmem/ram" type="array">
       <obj_property name="ElementShortName">ram[0:1023][31:0]</obj_property>
       <obj_property name="ObjectShortName">ram[0:1023][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/mat1" type="array">
+      <obj_property name="ElementShortName">mat1[1:0][3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">mat1[1:0][3:0][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb/DUT/mat1[1]" type="array">
+         <obj_property name="ElementShortName">[1][3:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][3:0][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/tb/DUT/mat1[1][3]" type="array">
+            <obj_property name="ElementShortName">[3][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/DUT/mat1[1][2]" type="array">
+            <obj_property name="ElementShortName">[2][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/DUT/mat1[1][1]" type="array">
+            <obj_property name="ElementShortName">[1][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb/DUT/mat1[1][0]" type="array">
+            <obj_property name="ElementShortName">[0][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/tb/DUT/mat1[0]" type="array">
+         <obj_property name="ElementShortName">[0][3:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][3:0][31:0]</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

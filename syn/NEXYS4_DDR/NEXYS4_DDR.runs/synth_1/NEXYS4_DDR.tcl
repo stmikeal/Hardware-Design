@@ -30,7 +30,10 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo c:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_verilog -library xil_defaultlib -sv C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sv
+read_verilog -library xil_defaultlib -sv {
+  C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sv
+  C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.srcs/sources_1/new/matrix_math.sv
+}
 read_verilog -library xil_defaultlib {
   C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/udm.v
   C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/hw/uart_rx.v
