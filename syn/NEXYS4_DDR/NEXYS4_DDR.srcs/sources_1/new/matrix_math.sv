@@ -37,7 +37,7 @@ module matrix_math #(
     logic [31:0] iter_row;
     logic [31:0] iter_column;
     
-    enum logic [1:0] {IDLE, ELEM, SUM, RESULT} state;
+    enum logic [1:0] {IDLE, COUNT, RESULT} state;
     
     always @(posedge clk, negedge nrst) begin
         if (~nrst) begin
@@ -50,47 +50,25 @@ module matrix_math #(
             res <= 0;
         end else begin
             case(state)
-                IDLE: state <= ELEM;
-                ELEM: begin
-                    elems[iter_elem][iter_row][iter_column] = mat1[iter_row][iter_elem] * mat2[iter_elem][iter_column];
-                    if (iter_elem == HEIGHT - 1 && iter_row == WIDTH - 1 && iter_column == WIDTH - 1) begin
-                        state <= SUM; 
-                        iter_elem <= 0;
-                        iter_row <= 0;
-                        iter_column <= 0;
+                IDLE: state <= COUNT;
+                COUNT: begin
+                    res[iter_row][iter_column] <= res[iter_row][iter_column] + mat1[iter_row][iter_elem] * mat2[iter_elem][iter_column];
+                    if (iter_elem != HEIGHT - 1) begin
+                        iter_elem <= iter_elem + 1;
                     end else begin
-                        if (iter_elem != HEIGHT - 1) begin
-                            iter_elem <= iter_elem + 1;
+                        iter_elem <= 0;
+                        if (iter_row != WIDTH - 1) begin
+                            iter_row <= iter_row + 1;
                         end else begin
-                            iter_elem <= 0;
-                            if (iter_row != WIDTH - 1) begin
-                                iter_row <= iter_row + 1;
-                            end else begin
-                                iter_row <= 0;
-                                iter_column <= iter_column + 1;
-                            end
+                            iter_row <= 0;
+                            iter_column <= iter_column + 1;
                         end
                     end
-                end
-                SUM: begin
-                    res[iter_row][iter_column] <= res[iter_row][iter_column] + elems[iter_elem][iter_row][iter_column];
                     if (iter_elem == HEIGHT - 1 && iter_row == WIDTH - 1 && iter_column == WIDTH - 1) begin
                         state <= RESULT;
                         iter_elem <= 0;
                         iter_row <= 0;
                         iter_column <= 0;
-                    end else begin
-                        if (iter_elem != HEIGHT - 1) begin
-                            iter_elem <= iter_elem + 1;
-                        end else begin
-                            iter_elem <= 0;
-                            if (iter_row != WIDTH - 1) begin
-                                iter_row <= iter_row + 1;
-                            end else begin
-                                iter_row <= 0;
-                                iter_column <= iter_column + 1;
-                            end
-                        end
                     end
                 end
                 RESULT: ready <= 1;

@@ -127,14 +127,10 @@ initial
     udm.rd32(32'h20000048, res);
     udm.rd32(32'h2000004C, res);
 	
-	WAIT(100);
-	
 	// writing to LED
 	udm.wr32(32'h00000000, 32'h5a5a5a5a);
 	
 	// reading SW
-	
-	WAIT(1000);
 
 	$display ("### TEST PROCEDURE FINISHED ###");
 	$stop;
