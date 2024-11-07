@@ -1,0 +1,27 @@
+Vivado Simulator 2019.1
+Time resolution is 1 ps
+### SIMULATION STARTED ###
+UDM WR32: addr: 0x20000000, data: 0x00000001
+UDM WR32: addr: 0x20000004, data: 0x00000002
+UDM WR32: addr: 0x20000008, data: 0x00000003
+UDM WR32: addr: 0x2000000c, data: 0x00000004
+UDM WR32: addr: 0x20000010, data: 0x00000008
+UDM WR32: addr: 0x20000014, data: 0x00000007
+UDM WR32: addr: 0x20000018, data: 0x00000006
+UDM WR32: addr: 0x2000001c, data: 0x00000005
+UDM WR32: addr: 0x20000020, data: 0x00000007
+UDM WR32: addr: 0x20000024, data: 0x00000005
+UDM WR32: addr: 0x20000028, data: 0x00000003
+UDM WR32: addr: 0x2000002c, data: 0x00000001
+UDM WR32: addr: 0x20000030, data: 0x00000004
+UDM WR32: addr: 0x20000034, data: 0x00000006
+UDM WR32: addr: 0x20000038, data: 0x00000008
+UDM WR32: addr: 0x2000003c, data: 0x0000000a
+UDM WR32: addr: 0x20000050, data: 0x00000001
+UDM RD32: addr: 0x20000040, data: 0x0000001e
+UDM RD32: addr: 0x20000044, data: 0x00000050
+UDM RD32: addr: 0x20000048, data: 0x00000072
+UDM RD32: addr: 0x2000004c, data: 0x000000ac
+UDM WR32: addr: 0x00000000, data: 0x5a5a5a5a
+### TEST PROCEDURE FINISHED ###
+$stop called at time : 8775 ns : File "C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/tb/tb.sv" Line 133

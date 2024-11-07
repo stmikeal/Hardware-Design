@@ -117,10 +117,7 @@ initial
 	
 	udm.wr32(32'h20000050, 32'h1);
 	
-	udm.rd32(32'h20000054, res);
-	while(res == 0) begin 
-	   udm.rd32(32'h20000054, res);
-	end
+	#10
 	
     udm.rd32(32'h20000040, res);
     udm.rd32(32'h20000044, res);

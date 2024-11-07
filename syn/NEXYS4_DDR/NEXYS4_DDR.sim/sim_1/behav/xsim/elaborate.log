@@ -3,7 +3,7 @@ Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
 Running: C:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe -wto 03603160a2ff4bb7b83a1876f332687d --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_behav xil_defaultlib.tb xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-WARNING: [VRFC 10-3091] actual bit length 30 differs from formal bit length 10 for port 'adr0_i' [C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sv:138]
+WARNING: [VRFC 10-3091] actual bit length 30 differs from formal bit length 10 for port 'adr0_i' [C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/udm/syn/NEXYS4_DDR/NEXYS4_DDR.sv:136]
 WARNING: [VRFC 10-696] first argument of $fatal is invalid, expecting 0, 1 or 2 [C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual.v:56]
 WARNING: [VRFC 10-696] first argument of $fatal is invalid, expecting 0, 1 or 2 [C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual.v:62]
 WARNING: [VRFC 10-696] first argument of $fatal is invalid, expecting 0, 1 or 2 [C:/ProgsData/Data/Labs/Vivado/activecore/designs/rtl/ram/ram_dual.v:125]

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Nov  4 17:47:11 2024
+| Date         : Thu Nov  7 15:42:41 2024
 | Host         : mike-laptop running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file NEXYS4_DDR_control_sets_placed.rpt
 | Design       : NEXYS4_DDR
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    64 |
-|    Minimum number of control sets                        |    64 |
+| Total control sets                                       |    25 |
+|    Minimum number of control sets                        |    25 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    54 |
+| Unused register locations in slices containing registers |    43 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    64 |
-| >= 0 to < 4        |     2 |
+| Total control sets |    25 |
+| >= 0 to < 4        |     1 |
 | >= 4 to < 6        |     2 |
 | >= 6 to < 8        |     1 |
 | >= 8 to < 10       |     7 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     1 |
 | >= 14 to < 16      |     1 |
-| >= 16              |    50 |
+| >= 16              |    12 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -59,11 +59,11 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |              12 |            8 |
-| No           | No                    | Yes                    |               7 |            3 |
-| No           | Yes                   | No                     |              31 |           15 |
-| Yes          | No                    | No                     |             560 |          147 |
-| Yes          | No                    | Yes                    |             743 |          194 |
-| Yes          | Yes                   | No                     |             313 |           93 |
+| No           | No                    | Yes                    |             408 |          130 |
+| No           | Yes                   | No                     |              31 |           16 |
+| Yes          | No                    | No                     |              48 |           19 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             346 |          109 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -74,69 +74,30 @@ Table of Contents
 |      Clock Signal      |                  Enable Signal                 |                  Set/Reset Signal                  | Slice Load Count | Bel Load Count |
 +------------------------+------------------------------------------------+----------------------------------------------------+------------------+----------------+
 |  sys_clk/inst/clk_out1 | udm/uart_tx/tx_o_i_1_n_0                       | reset_sync/Q[0]                                    |                1 |              1 |
-|  sys_clk/inst/clk_out1 |                                                | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                2 |              3 |
-|  sys_clk/inst/clk_out1 |                                                | reset_sync/arst                                    |                1 |              4 |
+|  sys_clk/inst/clk_out1 |                                                | reset_sync/arst                                    |                3 |              4 |
 |  sys_clk/inst/clk_out1 | udm/uart_rx/FSM_sequential_state[3]_i_1_n_0    | reset_sync/Q[0]                                    |                1 |              4 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/reset_syncbuf_reg[0]        | reset_sync/reset_syncbuf_reg[0]_1                  |                3 |              6 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/reset_syncbuf_reg[0]        | reset_sync/reset_syncbuf_reg[0]_1                  |                2 |              6 |
 |  sys_clk/inst/clk_out1 |                                                | udm/uart_rx/SR[0]                                  |                2 |              8 |
-|  sys_clk/inst/clk_out1 | udm/uart_tx/databuf_0                          | reset_sync/Q[0]                                    |                3 |              8 |
-|  sys_clk/inst/clk_out1 | udm/uart_rx/dout_bo[7]_i_1_n_0                 | reset_sync/Q[0]                                    |                2 |              8 |
+|  sys_clk/inst/clk_out1 | udm/uart_tx/databuf_0                          | reset_sync/Q[0]                                    |                2 |              8 |
 |  sys_clk/inst/clk_out1 | udm/udm_controller/RD_DATA_reg[23]_i_1_n_0     | udm/udm_controller/RD_DATA_reg[31]_i_1_n_0         |                2 |              8 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/tx_sendbyte[7]_i_2_n_0      | udm/udm_controller/tx_sendbyte[7]_i_1_n_0          |                2 |              8 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/tx_sendbyte_ff[7]_i_1_n_0   |                                                    |                2 |              8 |
-|  sys_clk/inst/clk_out1 |                                                | udm/udm_controller/FSM_sequential_state[2]_i_1_n_0 |                6 |              9 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/tx_sendbyte_ff[7]_i_1_n_0   |                                                    |                3 |              8 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/tx_sendbyte[7]_i_2_n_0      | udm/udm_controller/tx_sendbyte[7]_i_1_n_0          |                3 |              8 |
+|  sys_clk/inst/clk_out1 | udm/uart_rx/dout_bo[7]_i_1_n_0                 | reset_sync/Q[0]                                    |                2 |              8 |
+|  sys_clk/inst/clk_out1 |                                                | udm/udm_controller/FSM_sequential_state[2]_i_1_n_0 |                7 |              9 |
 |  sys_clk/inst/clk_out1 |                                                |                                                    |                8 |             12 |
 |  sys_clk/inst/clk_out1 |                                                | reset_sync/Q[0]                                    |                7 |             14 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/reset_syncbuf_reg[0]_0      |                                                    |                5 |             16 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/reset_syncbuf_reg[0]_0      | udm/udm_controller/bus_addr_bo_reg[1]_0            |                8 |             16 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/RD_DATA_reg[23]_i_1_n_0     |                                                    |                6 |             24 |
-|  sys_clk/inst/clk_out1 | udm/uart_rx/bitperiod_o[28]_i_1_n_0            | reset_sync/Q[0]                                    |               10 |             30 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[0][0][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                7 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[3][1][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                9 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[2][1][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[3][1][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |               11 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[1][1][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[2][0][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[3][0][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[0][1][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |               12 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[0][1][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |               10 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/res[0][1][31]_i_1_n_0              | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                7 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/res                                | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/res[1][0][31]_i_1_n_0              | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                6 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/res[1][1][31]_i_1_n_0              | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/uart_rx/clk_counter                        | reset_sync/Q[0]                                    |               11 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[1][0][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                9 |             32 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[29]_0       |                                                    |                9 |             16 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[29]_0       | udm/udm_controller/bus_addr_bo_reg[7]_0            |                8 |             16 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/RD_DATA_reg[23]_i_1_n_0     |                                                    |                7 |             24 |
+|  sys_clk/inst/clk_out1 | udm/uart_rx/bitperiod_o[28]_i_1_n_0            | reset_sync/Q[0]                                    |               12 |             30 |
 |  sys_clk/inst/clk_out1 | udm/uart_tx/clk_counter                        | reset_sync/Q[0]                                    |                6 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[1][1][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                7 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[0][0][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                5 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo[31]_i_1_n_0     | udm/udm_controller/FSM_sequential_state[2]_i_1_n_0 |                6 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_wdata_bo[31]_i_1_n_0    | udm/udm_controller/FSM_sequential_state[2]_i_1_n_0 |                8 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[3][0][1][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                9 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[1][0][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |               11 |             32 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo[31]_i_1_n_0     | udm/udm_controller/FSM_sequential_state[2]_i_1_n_0 |                9 |             32 |
 |  sys_clk/inst/clk_out1 | udm/udm_controller/timeout_counter[31]_i_2_n_0 | udm/udm_controller/timeout_counter[31]_i_1_n_0     |                9 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/tr_length[31]_i_2_n_0       | udm/udm_controller/tr_length[31]_i_1_n_0           |               15 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[2][0][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                6 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/elems[2][1][0][31]_i_1_n_0         | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                7 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/E[0]                        |                                                    |                9 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_4[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_2[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[2]_0[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[3]_1[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_3[0]     |                                                    |               12 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[3]_3[0]     |                                                    |                7 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[2]_2[0]     |                                                    |               10 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[2]_1[0]     |                                                    |                7 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[2]_3[0]     |                                                    |                7 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[3]_0[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[3]_2[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_5[0]     |                                                    |               12 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_6[0]     |                                                    |                7 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_0[0]     |                                                    |                8 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[4]_1[0]     |                                                    |                7 |             32 |
-|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_addr_bo_reg[24]_0[0]    | reset_sync/Q[0]                                    |                6 |             32 |
-|  sys_clk/inst/clk_out1 | matrix_math/iter_row                           | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                8 |             33 |
-|  sys_clk/inst/clk_out1 | matrix_math/iter_column                        | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |                9 |             33 |
-|  sys_clk/inst/clk_out1 | matrix_math/iter_elem                          | matrix_math/FSM_sequential_state[1]_i_2__0_n_0     |               13 |             37 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/tr_length[31]_i_2_n_0       | udm/udm_controller/tr_length[31]_i_1_n_0           |               16 |             32 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/E[0]                        | reset_sync/Q[0]                                    |               11 |             32 |
+|  sys_clk/inst/clk_out1 | udm/uart_rx/clk_counter                        | reset_sync/Q[0]                                    |               10 |             32 |
+|  sys_clk/inst/clk_out1 | udm/udm_controller/bus_wdata_bo[31]_i_1_n_0    | udm/udm_controller/FSM_sequential_state[2]_i_1_n_0 |               15 |             65 |
+|  sys_clk/inst/clk_out1 |                                                | matrix_math/math_start_reg                         |              127 |            404 |
 +------------------------+------------------------------------------------+----------------------------------------------------+------------------+----------------+
 
 

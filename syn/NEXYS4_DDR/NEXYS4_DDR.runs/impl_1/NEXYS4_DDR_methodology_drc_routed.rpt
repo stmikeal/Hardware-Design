@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Nov  4 17:47:32 2024
+| Date         : Thu Nov  7 15:42:59 2024
 | Host         : mike-laptop running 64-bit major release  (build 9200)
 | Command      : report_methodology -file NEXYS4_DDR_methodology_drc_routed.rpt -pb NEXYS4_DDR_methodology_drc_routed.pb -rpx NEXYS4_DDR_methodology_drc_routed.rpx
 | Design       : NEXYS4_DDR
@@ -23,13 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 42
+             Violations found: 87
 +-----------+------------------+------------------------------------------------+------------+
 | Rule      | Severity         | Description                                    | Violations |
 +-----------+------------------+------------------------------------------------+------------+
 | TIMING-6  | Critical Warning | No common primary clock between related clocks | 2          |
 | LUTAR-1   | Warning          | LUT drives async reset alert                   | 2          |
-| SYNTH-10  | Warning          | Wide multiplier                                | 3          |
+| SYNTH-10  | Warning          | Wide multiplier                                | 48         |
 | TIMING-18 | Warning          | Missing input or output delay                  | 35         |
 +-----------+------------------+------------------------------------------------+------------+
 
@@ -47,7 +47,7 @@ Related violations: <none>
 
 LUTAR-1#1 Warning
 LUT drives async reset alert  
-LUT cell matrix_math/FSM_sequential_state[1]_i_3__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) matrix_math/FSM_sequential_state_reg[0]/CLR, matrix_math/FSM_sequential_state_reg[1]/CLR, matrix_math/elems_reg[0][0][0][0]/CLR, matrix_math/elems_reg[0][0][0][10]/CLR, matrix_math/elems_reg[0][0][0][11]/CLR, matrix_math/elems_reg[0][0][0][12]/CLR, matrix_math/elems_reg[0][0][0][13]/CLR, matrix_math/elems_reg[0][0][0][14]/CLR, matrix_math/elems_reg[0][0][0][15]/CLR, matrix_math/elems_reg[0][0][0][16]/CLR, matrix_math/elems_reg[0][0][0][17]/CLR, matrix_math/elems_reg[0][0][0][18]/CLR, matrix_math/elems_reg[0][0][0][19]/CLR, matrix_math/elems_reg[0][0][0][1]/CLR, matrix_math/elems_reg[0][0][0][20]/CLR (the first 15 of 746 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell matrix_math/res[0][0][11]_i_10, with 2 or more inputs, drives asynchronous preset/clear pin(s) res_reg[0][0][31]_i_83/CLR, res_reg[0][1][31]_i_83/CLR, res_reg[1][0][31]_i_83/CLR, res_reg[1][1][31]_i_83/CLR, matrix_math/elems_reg[0][0][0][0]__1/CLR, matrix_math/elems_reg[0][0][0][10]__1/CLR, matrix_math/elems_reg[0][0][0][11]__1/CLR, matrix_math/elems_reg[0][0][0][12]__1/CLR, matrix_math/elems_reg[0][0][0][13]__1/CLR, matrix_math/elems_reg[0][0][0][14]__1/CLR, matrix_math/elems_reg[0][0][0][15]__1/CLR, matrix_math/elems_reg[0][0][0][16]__1/CLR, matrix_math/elems_reg[0][0][0][1]__1/CLR, matrix_math/elems_reg[0][0][0][2]__1/CLR, matrix_math/elems_reg[0][0][0][3]__1/CLR (the first 15 of 404 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#2 Warning
@@ -57,17 +57,242 @@ Related violations: <none>
 
 SYNTH-10#1 Warning
 Wide multiplier  
-Detected multiplier at matrix_math/p_1_out of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Detected multiplier at matrix_math/p_0_out of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
 Related violations: <none>
 
 SYNTH-10#2 Warning
 Wide multiplier  
-Detected multiplier at matrix_math/p_1_out__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Detected multiplier at matrix_math/p_0_out__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
 Related violations: <none>
 
 SYNTH-10#3 Warning
 Wide multiplier  
-Detected multiplier at matrix_math/p_1_out__1 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Detected multiplier at matrix_math/p_0_out__1 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#4 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__10 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#5 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__11 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#6 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__12 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#7 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__13 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#8 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__14 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#9 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__15 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#10 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__16 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#11 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__17 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#12 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__18 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#13 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__19 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#14 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__2 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#15 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__20 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#16 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__21 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#17 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__22 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#18 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__23 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#19 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__24 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#20 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__25 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#21 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__26 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#22 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__27 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#23 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__28 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#24 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__29 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#25 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__3 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#26 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__30 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#27 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__31 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#28 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__32 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#29 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__33 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#30 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__34 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#31 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__35 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#32 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__36 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#33 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__37 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#34 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__38 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#35 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__39 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#36 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__4 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#37 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__40 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#38 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__41 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#39 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__42 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#40 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__43 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#41 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__44 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#42 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__45 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#43 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__46 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#44 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__5 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#45 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__6 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#46 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__7 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#47 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__8 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#48 Warning
+Wide multiplier  
+Detected multiplier at matrix_math/p_0_out__9 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
 Related violations: <none>
 
 TIMING-18#1 Warning

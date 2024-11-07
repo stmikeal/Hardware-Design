@@ -43,7 +43,6 @@ logic [1:0][3:0][31:0] mat1;
 logic [3:0][1:0][31:0] mat2;  
 logic [1:0][1:0][31:0] res;
 logic math_start;
-logic math_ready;
 wire [29:0]short_addr;
 assign short_addr = udm_bus.addr[31:2];
 
@@ -93,7 +92,7 @@ udm
 	, .bus_rdata_bi(udm_bus.rdata)
 );
 
-matrix_math matrix_math(clk_gen, math_start, mat1, mat2, res, math_ready);
+matrix_math matrix_math(clk_gen, math_start, mat1, mat2, res);
 
 localparam CSR_LED_ADDR         = 32'h00000000;
 localparam CSR_SW_ADDR          = 32'h00000004;
@@ -108,7 +107,6 @@ localparam CSR_MATH_MAT1_MAX    = CSR_MATH_ADDR + 4 * 8;
 localparam CSR_MATH_MAT2_MAX    = CSR_MATH_MAT1_MAX + 4 * 8;
 localparam CSR_MATH_RES_MAX     = CSR_MATH_MAT2_MAX + 4 * 4;
 localparam CSR_MATH_START       = CSR_MATH_RES_MAX + 4;
-localparam CSR_MATH_READY       = CSR_MATH_START + 4;
 
 
 logic udm_testmem_enb;
@@ -186,10 +184,6 @@ always @(posedge clk_gen)
                     begin
                         udm_csr_resp <= 1'b1;
                         udm_csr_rdata <= res[(short_addr & 32'h2) >> 1][short_addr & 32'h1];
-                    end
-                    else if (udm_bus.addr >= CSR_MATH_START  && udm_bus.addr < CSR_MATH_READY) begin
-                        udm_csr_resp <= 1'b1;
-                        udm_csr_rdata <= math_ready;
                     end
                 end
                 if (udm_bus.addr == CSR_LED_ADDR)

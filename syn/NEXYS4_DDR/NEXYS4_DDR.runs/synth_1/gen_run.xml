@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-3" LaunchTime="1730731553">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-3" LaunchTime="1730983305">
   <File Type="PA-TCL" Name="NEXYS4_DDR.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="NEXYS4_DDR_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="NEXYS4_DDR_reports.tcl"/>
